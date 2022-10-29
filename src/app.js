@@ -28,7 +28,7 @@ function formatDate(timestamp) {
 }
 
 function displayWeatherConditions(response) {
-  let temperature = Math.round(response.data.temperature.current);
+  celsiusTemperature = response.data.temperature.current;
   let wind = Math.round(response.data.wind.speed);
   let city = response.data.city;
   let humidity = Math.round(response.data.temperature.humidity);
@@ -41,7 +41,7 @@ function displayWeatherConditions(response) {
   );
   let iconElement = document.querySelector("#icon");
   let dateElement = document.querySelector("#date-and-time");
-  temperatureElement.innerHTML = temperature;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   windElement.innerHTML = wind;
   displayedCityAndCountry.innerHTML = `${city}, ${country}`;
   humidityElement.innerHTML = humidity;
@@ -79,10 +79,35 @@ function recieveCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(findCurrentPositionWeather);
 }
 
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#displayedTemperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#displayedTemperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", recieveCurrentPosition);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Kiev");

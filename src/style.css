@@ -26,6 +26,14 @@ h2 {
   width: 90%;
 }
 
+.active {
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
+}
+
 .current-weather-area {
   margin: 20px 40px;
 }
