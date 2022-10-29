@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style.css" />
+
     <script
       src="https://kit.fontawesome.com/7a8d18047f.js"
       crossorigin="anonymous"
@@ -15,49 +15,60 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
   <body>
     <div class="container">
-      <div class="card">
-        <div class="card-body">
-          <h1 id="displayedCity">Hogwarts</h1>
-          <br />
-          <h2>
-            August-28-2022
+      <div class="weather-app-wrapper">
+        <div class="card">
+          <div class="card-body">
+            <h1 id="displayedCity">Hogwarts</h1>
             <br />
-            <span id="date-and-time">Sunday, 15:23</span>
-          </h2>
-          <br />
-          <div class="container text-center current-weather-area">
-            <div class="row">
-              <div class="col-1">
-                <i class="fa-solid fa-sun sun-main-icon"></i>
-              </div>
-              <div class="col-2">
-                <span id="currentTemperature">+19</span>
-                <a href="#" id="celsius-link">°C</a>
-              </div>
-              <div class="col-9">
-                Humidity: <span id="humidity">80</span>%
-                <br />
-                Wind: <span id="wind">11</span> km/hour
+            <h2>
+              August-28-2022
+              <br />
+              <span id="date-and-time">Sunday, 15:23</span>
+            </h2>
+            <br />
+            <div class="container text-center current-weather-area">
+              <div class="row">
+                <div class="col-6">
+                  <i class="fa-solid fa-sun sun-main-icon"></i>
+                  <span class="currentTemperature">+19</span>
+                  <span class="units">
+                    <a href="#" id="celsius-link">°C</a> |
+                    <a href="#" id="fahrenheit-link">°F</a>
+                  </span>
+                </div>
+                <div class="col-6 weather-conditions">
+                  Humidity: <span id="humidity">80</span>%
+                  <br />
+                  Wind: <span id="wind">11</span> km/hour
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <small>
+          <a
+            href="https://github.com/Pigalica/my-weather-app"
+            target="_blank"
+            rel="noopener"
+          >
+            Open-source code
+          </a>
+          by Dasha Ivanko
+        </small>
       </div>
     </div>
-    <small>
-      <a
-        href="https://github.com/Pigalica/my-weather-app"
-        target="_blank"
-        rel="noopener"
-      >
-        Open-source code
-      </a>
-      by Dasha Ivanko
-    </small>
+
     <script src="src/app.js"></script>
   </body>
 </html>

@@ -1,0 +1,49 @@
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+h1 {
+  color: rgb(105, 102, 102);
+  font-size: 24px;
+}
+
+h2 {
+  color: rgb(119, 116, 116);
+  font-size: 20px;
+}
+
+.currentTemperature {
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  top: -10px;
+}
+
+.current-weather-area {
+  margin: 20px 40px;
+}
+
+.sun-main-icon {
+  color: rgb(233, 233, 12);
+  font-size: 50px;
+}
+
+.units {
+  font-size: 14px;
+  position: relative;
+  top: -18px;
+}
+
+.weather-app-wrapper {
+  margin: 60px auto;
+  padding: 20px;
+  width: 70%;
+}
+
+.weather-conditions {
+  text-align: start;
+}
