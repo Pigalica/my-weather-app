@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7a8d18047f.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,9 +19,45 @@
   </head>
   <body>
     <div class="container">
-      <h1>Hello World</h1>
-      <a href="" class="btn btn-primary">Click me</a>
+      <div class="card">
+        <div class="card-body">
+          <h1 id="displayedCity">Hogwarts</h1>
+          <br />
+          <h2>
+            August-28-2022
+            <br />
+            <span id="date-and-time">Sunday, 15:23</span>
+          </h2>
+          <br />
+          <div class="container text-center current-weather-area">
+            <div class="row">
+              <div class="col-1">
+                <i class="fa-solid fa-sun sun-main-icon"></i>
+              </div>
+              <div class="col-2">
+                <span id="currentTemperature">+19</span>
+                <a href="#" id="celsius-link">°C</a>
+              </div>
+              <div class="col-9">
+                Humidity: <span id="humidity">80</span>%
+                <br />
+                Wind: <span id="wind">11</span> km/hour
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <small>
+      <a
+        href="https://github.com/Pigalica/my-weather-app"
+        target="_blank"
+        rel="noopener"
+      >
+        Open-source code
+      </a>
+      by Dasha Ivanko
+    </small>
     <script src="src/app.js"></script>
   </body>
 </html>
