@@ -16,6 +16,10 @@ h2 {
   font-size: 20px;
 }
 
+h2:first-letter {
+  text-transform: capitalize;
+}
+
 #displayedTemperature {
   font-size: 24px;
   font-weight: bold;

@@ -31,11 +31,15 @@ function displayWeatherConditions(response) {
   celsiusTemperature = response.data.temperature.current;
   let wind = Math.round(response.data.wind.speed);
   let city = response.data.city;
+  let weatherDescription = response.data.condition.description;
   let humidity = Math.round(response.data.temperature.humidity);
   let country = response.data.country;
   let temperatureElement = document.querySelector("#displayedTemperature");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
+  let weatherDescriptionElement = document.querySelector(
+    "#weather-description"
+  );
   let displayedCityAndCountry = document.querySelector(
     "#displayedCityAndCountry"
   );
@@ -45,6 +49,7 @@ function displayWeatherConditions(response) {
   windElement.innerHTML = wind;
   displayedCityAndCountry.innerHTML = `${city}, ${country}`;
   humidityElement.innerHTML = humidity;
+  weatherDescriptionElement.innerHTML = weatherDescription;
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
