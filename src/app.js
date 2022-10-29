@@ -10,10 +10,16 @@ function displayWeatherConditions(response) {
   let displayedCityAndCountry = document.querySelector(
     "#displayedCityAndCountry"
   );
+  let iconElement = document.querySelector("#icon");
   temperatureElement.innerHTML = temperature;
   windElement.innerHTML = wind;
   displayedCityAndCountry.innerHTML = `${city}, ${country}`;
   humidityElement.innerHTML = humidity;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
   console.log(response.data);
 }
 
