@@ -16,11 +16,16 @@ h2 {
   font-size: 20px;
 }
 
-.currentTemperature {
+#displayedTemperature {
   font-size: 24px;
   font-weight: bold;
   position: relative;
   top: -10px;
+}
+
+#search-form {
+  margin: 20px auto;
+  width: 90%;
 }
 
 .current-weather-area {
