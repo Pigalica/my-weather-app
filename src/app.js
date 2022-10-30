@@ -28,34 +28,38 @@ function formatDate(timestamp) {
 }
 
 function displayWeatherConditions(response) {
-  celsiusTemperature = response.data.temperature.current;
-  let wind = Math.round(response.data.wind.speed);
-  let city = response.data.city;
-  let weatherDescription = response.data.condition.description;
-  let humidity = Math.round(response.data.temperature.humidity);
-  let country = response.data.country;
-  let temperatureElement = document.querySelector("#displayedTemperature");
-  let windElement = document.querySelector("#wind");
-  let humidityElement = document.querySelector("#humidity");
-  let weatherDescriptionElement = document.querySelector(
-    "#weather-description"
-  );
-  let displayedCityAndCountry = document.querySelector(
-    "#displayedCityAndCountry"
-  );
-  let iconElement = document.querySelector("#icon");
-  let dateElement = document.querySelector("#date-and-time");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  windElement.innerHTML = wind;
-  displayedCityAndCountry.innerHTML = `${city}, ${country}`;
-  humidityElement.innerHTML = humidity;
-  weatherDescriptionElement.innerHTML = weatherDescription;
-  iconElement.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-  );
-  iconElement.setAttribute("alt", response.data.condition.description);
-  dateElement.innerHTML = formatDate(response.data.time * 1000);
+  if (response.data.city) {
+    celsiusTemperature = response.data.temperature.current;
+    let wind = Math.round(response.data.wind.speed);
+    let city = response.data.city;
+    let weatherDescription = response.data.condition.description;
+    let humidity = Math.round(response.data.temperature.humidity);
+    let country = response.data.country;
+    let temperatureElement = document.querySelector("#displayedTemperature");
+    let windElement = document.querySelector("#wind");
+    let humidityElement = document.querySelector("#humidity");
+    let weatherDescriptionElement = document.querySelector(
+      "#weather-description"
+    );
+    let displayedCityAndCountry = document.querySelector(
+      "#displayedCityAndCountry"
+    );
+    let iconElement = document.querySelector("#icon");
+    let dateElement = document.querySelector("#date-and-time");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+    windElement.innerHTML = wind;
+    displayedCityAndCountry.innerHTML = `${city}, ${country}`;
+    humidityElement.innerHTML = humidity;
+    weatherDescriptionElement.innerHTML = weatherDescription;
+    iconElement.setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+    iconElement.setAttribute("alt", response.data.condition.description);
+    dateElement.innerHTML = formatDate(response.data.time * 1000);
+  } else {
+    alert("Sorry, can't find your city. Please, enter valid city name");
+  }
 }
 
 function search(city) {
