@@ -56,7 +56,6 @@ function displayWeatherConditions(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.description);
   dateElement.innerHTML = formatDate(response.data.time * 1000);
-  console.log(response.data);
 }
 
 function search(city) {
