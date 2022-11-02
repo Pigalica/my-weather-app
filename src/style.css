@@ -68,3 +68,16 @@ h2:first-letter {
   position: relative;
   top: 20px;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  color: rgb(48, 46, 46);
+}
+
+.weather-forecast-temperature {
+  color: rgb(119, 116, 116);
+}
