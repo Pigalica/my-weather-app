@@ -27,9 +27,39 @@ function formatDate(timestamp) {
   return `${day} ${time}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+      <div class="weather-forecast-date">${day}</div>
+      <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+        alt=""
+        width="56"
+      />
+      <div class="weather-forecast-temperature">
+        <span class="weather-forecast-temperature-max">22°</span>
+        <span class="weather-forecast-temperature-min">25°</span>
+      </div>
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeatherConditions(response) {
   if (response.data.city) {
     celsiusTemperature = response.data.temperature.current;
+
     let wind = Math.round(response.data.wind.speed);
     let city = response.data.city;
     let weatherDescription = response.data.condition.description;
@@ -46,6 +76,7 @@ function displayWeatherConditions(response) {
     );
     let iconElement = document.querySelector("#icon");
     let dateElement = document.querySelector("#date-and-time");
+
     temperatureElement.innerHTML = Math.round(celsiusTemperature);
     windElement.innerHTML = wind;
     displayedCityAndCountry.innerHTML = `${city}, ${country}`;
@@ -119,3 +150,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Kiev");
+displayForecast();
