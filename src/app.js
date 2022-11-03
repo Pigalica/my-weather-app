@@ -56,38 +56,42 @@ function displayForecast() {
 }
 
 function displayWeatherConditions(response) {
+  celsiusTemperature = response.data.temperature.current;
+
+  let wind = Math.round(response.data.wind.speed);
+  let city = response.data.city;
+  let weatherDescription = response.data.condition.description;
+  let humidity = Math.round(response.data.temperature.humidity);
+  let country = response.data.country;
+  let temperatureElement = document.querySelector("#displayedTemperature");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
+  let weatherDescriptionElement = document.querySelector(
+    "#weather-description"
+  );
+  let displayedCityAndCountry = document.querySelector(
+    "#displayedCityAndCountry"
+  );
+  let iconElement = document.querySelector("#icon");
+  let dateElement = document.querySelector("#date-and-time");
+  let currentTime = new Date();
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  windElement.innerHTML = wind;
+  displayedCityAndCountry.innerHTML = `${city}, ${country}`;
+  humidityElement.innerHTML = humidity;
+  weatherDescriptionElement.innerHTML = weatherDescription;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
+  dateElement.innerHTML = displayDayOfWeekAndTime(currentTime);
+}
+
+function verifyIfSearchIsValid(response) {
   if (response.data.city) {
-    celsiusTemperature = response.data.temperature.current;
-
-    let wind = Math.round(response.data.wind.speed);
-    let city = response.data.city;
-    let weatherDescription = response.data.condition.description;
-    let humidity = Math.round(response.data.temperature.humidity);
-    let country = response.data.country;
-    let temperatureElement = document.querySelector("#displayedTemperature");
-    let windElement = document.querySelector("#wind");
-    let humidityElement = document.querySelector("#humidity");
-    let weatherDescriptionElement = document.querySelector(
-      "#weather-description"
-    );
-    let displayedCityAndCountry = document.querySelector(
-      "#displayedCityAndCountry"
-    );
-    let iconElement = document.querySelector("#icon");
-    let dateElement = document.querySelector("#date-and-time");
-    let currentTime = new Date();
-
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
-    windElement.innerHTML = wind;
-    displayedCityAndCountry.innerHTML = `${city}, ${country}`;
-    humidityElement.innerHTML = humidity;
-    weatherDescriptionElement.innerHTML = weatherDescription;
-    iconElement.setAttribute(
-      "src",
-      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-    );
-    iconElement.setAttribute("alt", response.data.condition.description);
-    dateElement.innerHTML = displayDayOfWeekAndTime(currentTime);
+    displayWeatherConditions(response);
   } else {
     alert("Sorry, can't find your city. Please, enter valid city name");
   }
@@ -96,7 +100,7 @@ function displayWeatherConditions(response) {
 function search(city) {
   let apiKey = "f48290bo64bt17bab9a1b6c6eb3dae46";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-  axios.get(apiUrl).then(displayWeatherConditions);
+  axios.get(apiUrl).then(verifyIfSearchIsValid);
 }
 
 function handleSubmit(event) {
@@ -110,7 +114,7 @@ function findCurrentPositionWeather(position) {
   let currentLatitude = position.coords.latitude;
   let apiKey = "f48290bo64bt17bab9a1b6c6eb3dae46";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${currentLongitude}&lat=${currentLatitude}&key=${apiKey}`;
-  axios.get(apiUrl).then(displayWeatherConditions);
+  axios.get(apiUrl).then(verifyIfSearchIsValid);
 }
 
 function recieveCurrentPosition(event) {
