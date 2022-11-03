@@ -1,5 +1,4 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
+function displayDayOfWeekAndTime(date) {
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -76,6 +75,7 @@ function displayWeatherConditions(response) {
     );
     let iconElement = document.querySelector("#icon");
     let dateElement = document.querySelector("#date-and-time");
+    let currentTime = new Date();
 
     temperatureElement.innerHTML = Math.round(celsiusTemperature);
     windElement.innerHTML = wind;
@@ -87,7 +87,7 @@ function displayWeatherConditions(response) {
       `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
     );
     iconElement.setAttribute("alt", response.data.condition.description);
-    dateElement.innerHTML = formatDate(response.data.time * 1000);
+    dateElement.innerHTML = displayDayOfWeekAndTime(currentTime);
   } else {
     alert("Sorry, can't find your city. Please, enter valid city name");
   }
