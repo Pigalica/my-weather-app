@@ -70,14 +70,14 @@ function displayForecast(response) {
 }
 
 function getForecast(city) {
+  let units = "metric";
   let apiKey = "f48290bo64bt17bab9a1b6c6eb3dae46";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeatherConditions(response) {
-  celsiusTemperature = response.data.temperature.current;
-
+  let celsiusTemperature = response.data.temperature.current;
   let wind = Math.round(response.data.wind.speed);
   let city = response.data.city;
   let weatherDescription = response.data.condition.description;
@@ -120,8 +120,9 @@ function verifyIfSearchIsValid(response) {
 }
 
 function search(city) {
+  let units = "metric";
   let apiKey = "f48290bo64bt17bab9a1b6c6eb3dae46";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(verifyIfSearchIsValid);
 }
 
@@ -143,36 +144,10 @@ function recieveCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(findCurrentPositionWeather);
 }
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#displayedTemperature");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#displayedTemperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", recieveCurrentPosition);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Kiev");
