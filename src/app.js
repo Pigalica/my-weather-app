@@ -26,7 +26,8 @@ function displayDayOfWeekAndTime(date) {
   return `${day} ${time}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#weather-forecast");
 
   let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -53,6 +54,12 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(city) {
+  let apiKey = "f48290bo64bt17bab9a1b6c6eb3dae46";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeatherConditions(response) {
@@ -87,6 +94,8 @@ function displayWeatherConditions(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.description);
   dateElement.innerHTML = displayDayOfWeekAndTime(currentTime);
+
+  getForecast(city);
 }
 
 function verifyIfSearchIsValid(response) {
@@ -154,4 +163,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Kiev");
-displayForecast();
