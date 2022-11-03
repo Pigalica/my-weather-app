@@ -111,11 +111,28 @@ function displayWeatherConditions(response) {
   getForecast(city);
 }
 
+function closeImage() {
+  let imageArea = document.querySelector(".ukrainian-postmark-image");
+  imageArea.style.display = "none";
+}
+
+function displayUkrainianPostMark() {
+  let imageArea = document.querySelector(".ukrainian-postmark-image");
+  imageArea.style.display = "block";
+
+  let closeButton = document.querySelector("#close");
+  closeButton.addEventListener("click", closeImage);
+}
+
 function verifyIfSearchIsValid(response) {
-  if (response.data.city) {
-    displayWeatherConditions(response);
+  if (response.data.country === "Russian Federation") {
+    displayUkrainianPostMark();
   } else {
-    alert("Sorry, can't find your city. Please, enter valid city name");
+    if (response.data.city) {
+      displayWeatherConditions(response);
+    } else {
+      alert("Sorry, can't find your city. Please, enter valid city name");
+    }
   }
 }
 

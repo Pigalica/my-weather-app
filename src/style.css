@@ -28,6 +28,22 @@ h2:first-letter {
   font-weight: bold;
 }
 
+.ukrainian-postmark-image {
+  display: none;
+}
+
+#image {
+  max-width: 100%;
+}
+
+#close {
+  cursor: pointer;
+  font-size: 48px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 #search-form {
   margin: 20px auto;
   width: 90%;
