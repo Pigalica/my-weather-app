@@ -70,11 +70,6 @@ h2:first-letter {
   margin: 60px 40px;
 }
 
-.sun-main-icon {
-  color: rgb(233, 233, 12);
-  font-size: 50px;
-}
-
 .units {
   font-size: 14px;
   position: relative;
@@ -108,4 +103,23 @@ h2:first-letter {
 
 .weather-forecast-temperature-max {
   font-weight: bold;
+}
+
+@media (max-width: 990px) {
+  .control-elements {
+    padding-top: 8px;
+  }
+
+  .forecast-elements {
+    padding-top: 20px;
+    width: 50%;
+  }
+
+  .current-weather-area {
+    margin: 0;
+  }
+
+  #icon {
+    width: 50%;
+  }
 }
